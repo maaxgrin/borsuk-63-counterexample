@@ -10,6 +10,8 @@ where \(d_B\) denotes the least dimension in which Borsuk's conjecture fails.
 
 The construction starts from the \(G_2(4)\) strongly regular graph described by Brouwer [[BroG24](#BroG24)] and used in Bondarenko's 65-dimensional two-distance counterexample [[Bon2014](#Bon2014)]. The previous best bound \(d_B\le64\) is due to Jenrich and Brouwer [[JB2014](#JB2014)].
 
+The construction and proof note were obtained with assistance from GPT-5.5 Pro.
+
 The principle of the proof is as follows. In the standard \(65\)-dimensional representation of \(G_2(4)\), an isotropic point \(q_0\) defines a partition \(B_1,B_2,B_3,C\) of the vertices. The \(320\) points indexed by \(C\) are orthogonal to a 2-dimensional space spanned by three block sums, hence lie in a 63-dimensional subspace. One then adds a single projected point \(p\) in the same subspace, chosen so that the diameter remains the original large distance. The absence of a \(6\)-clique in \(G_2(4)\) then implies that every smaller-diameter part has at most \(5\) points, so \(321\) points require at least \(65>64\) parts.
 
 The final \(321\)-point set is not asserted to be a two-distance set; the two-distance input is the standard \(G_2(4)\) representation on the points \(x_v\).
