@@ -14,7 +14,7 @@ The construction and proof note were obtained with assistance from GPT-5.5 Pro.
 
 The principle of the proof is as follows. In the standard \(65\)-dimensional representation of \(G_2(4)\), an isotropic point \(q_0\) defines a partition \(B_1,B_2,B_3,C\) of the vertices. The \(320\) points indexed by \(C\) are orthogonal to a 2-dimensional space spanned by three block sums, hence lie in a 63-dimensional subspace. One then adds a single projected point \(p\) in the same subspace, chosen so that the diameter remains the original large distance. The absence of a \(6\)-clique in \(G_2(4)\) then implies that every smaller-diameter part has at most \(5\) points, so \(321\) points require at least \(65>64\) parts.
 
-The final \(321\)-point set is not asserted to be a two-distance set; the two-distance input is the standard \(G_2(4)\) representation on the points \(x_v\).
+Only the input configuration \(\{x_v\}\) uses the standard two-distance \(G_2(4)\) representation; after adjoining \(p\), the final \(321\)-point set is not two-distance.
 
 ## 1. Quoted input
 
