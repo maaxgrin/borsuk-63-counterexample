@@ -77,13 +77,13 @@ $$
 C=V(\Gamma)\setminus B.
 $$
 
-The exact verification gives
+The script then forms the partition \(B,C\) and gives
 
 $$
 |B|=96,\qquad |C|=320.
 $$
 
-It also gives that the induced graph on \(B\) has three connected components
+It also verifies that the induced graph on \(B\) has three connected components
 
 $$
 B_1,B_2,B_3
@@ -232,7 +232,9 @@ $$
 \mathrm{diam}(X)^2=192.
 $$
 
-Let \(Y\subset X\) have diameter strictly smaller than \(\mathrm{diam}(X)\). If \(p\notin Y\), then the corresponding vertices in \(C\) must be pairwise adjacent, hence form a clique in \(\Gamma\). Since \(\Gamma\) has no \(6\)-clique, \(|Y|\le5\).
+The script verifies the required clique facts: there is no \(6\)-clique in \(\Gamma\), no \(6\)-clique on \(C\), and no \(5\)-clique in \(N(b)\cap C\).
+
+Let \(Y\subset X\) have diameter strictly smaller than \(\mathrm{diam}(X)\). If \(p\notin Y\), then the corresponding vertices in \(C\) must be pairwise adjacent, hence form a clique in \(\Gamma\). Since the script verifies that \(\Gamma\) has no \(6\)-clique, \(|Y|\le5\).
 
 If \(p\in Y\), then every other point of \(Y\) must be some \(x_c\) with \(b\sim c\), and these \(c\)'s must be pairwise adjacent. Hence
 
@@ -240,7 +242,7 @@ $$
 \{b\}\cup\{c\in C:x_c\in Y\setminus\{p\}\}
 $$
 
-is a clique in \(\Gamma\). Again using the absence of a \(6\)-clique, this gives \(|Y|\le5\).
+is a clique in \(\Gamma\). Again using the verified absence of a \(6\)-clique, this gives \(|Y|\le5\).
 
 Thus every subset of \(X\) of strictly smaller diameter has at most \(5\) points. Any partition of \(X\) into subsets of strictly smaller diameter therefore needs at least
 
