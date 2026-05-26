@@ -1,27 +1,37 @@
-# Borsuk_63_note
+Borsuk_63_note
 
-This note records the part added to the existing \(G_2(4)\) construction. The \(G_2(4)\) strongly regular graph is the one described by Brouwer [[BroG24](#BroG24)] and used in Bondarenko's \(65\)-dimensional counterexample [[Bon2014](#Bon2014)]. Its Euclidean two-distance representation is the standard representation used in those constructions [[Bon2014](#Bon2014), [BroG24](#BroG24)]. The previous best bound \(C_{28}\le 64\) comes from the Jenrich--Brouwer refinement [[JB2014](#JB2014)].
-
-The new point is to extract a \(320\)-point subset lying in a codimension-\(2\) subspace and add one carefully scaled projected point. This gives \(321\) points in \(\mathbb R^{63}\), while preserving the clique obstruction that forces at least \(65\) smaller-diameter parts.
-
-## Inputs from the literature
-
-We use the \(G_2(4)\) strongly regular graph [[BroG24](#BroG24), [Bon2014](#Bon2014)]
+This repository contains a proof note and an exact finite verification script for a 63-dimensional construction related to Borsuk's conjecture. It gives
 
 $$
-\Gamma\simeq \operatorname{srg}(416,100,36,20),
+C_{28}\le 63,
 $$
 
-with its standard Euclidean representation by vectors [[Bon2014](#Bon2014), [BroG24](#BroG24)]
+where \(C_{28}\) denotes the least dimension in which Borsuk's conjecture fails.
+
+The construction starts from the \(G_2(4)\) strongly regular graph described by Brouwer [[BroG24](#BroG24)] and used in Bondarenko's 65-dimensional two-distance counterexample [[Bon2014](#Bon2014)]. The previous best bound \(C_{28}\le64\) is due to Jenrich and Brouwer [[JB2014](#JB2014)].
+
+The principle of the proof is as follows. In the standard \(65\)-dimensional representation of \(G_2(4)\), an isotropic point \(q_0\) defines a partition \(B_1,B_2,B_3,C\) of the vertices. The \(320\) points indexed by \(C\) are orthogonal to a 2-dimensional space spanned by three block sums, hence lie in a 63-dimensional subspace. One then adds a single projected point \(p\) in the same subspace, chosen so that the diameter remains the original large distance. The absence of a \(6\)-clique in \(G_2(4)\) then implies that every smaller-diameter part has at most \(5\) points, so \(321\) points require at least \(65>64\) parts.
+
+1. Quoted input.
+
+This part records the standard graph-theoretic and Euclidean facts used as input.
+
+Let
+
+$$
+\Gamma\simeq \mathrm{srg}(416,100,36,20)
+$$
+
+be the \(G_2(4)\) graph. We use its standard Euclidean representation [[Bon2014](#Bon2014), [BroG24](#BroG24)], namely vectors
 
 $$
 x_v\in\mathbb R^{65}\qquad (v\in V(\Gamma))
 $$
 
-satisfying
+such that
 
 $$
-\langle x_u,x_v\rangle=
+x_u\cdot x_v=
 \begin{cases}
 90, & u=v,\\
 18, & u\sim v,\\
@@ -29,15 +39,13 @@ $$
 \end{cases}
 $$
 
-Equivalently, the Gram matrix is the usual positive-eigenvalue Gram matrix for this strongly regular graph [[Bon2014](#Bon2014), [BroG24](#BroG24)]:
+Equivalently, the Gram matrix is
 
 $$
 G=96I+24A-6J,
 $$
 
-where \(A\) is the adjacency matrix of \(\Gamma\). This is positive semidefinite of rank \(65\), using the eigenvalues of the \(G_2(4)\) graph [[BroG24](#BroG24)].
-
-Thus
+where \(A\) is the adjacency matrix of \(\Gamma\). The eigenvalues of \(G_2(4)\), as recorded by Brouwer [[BroG24](#BroG24)], give that \(G\) is positive semidefinite of rank \(65\). In this representation,
 
 $$
 \|x_u-x_v\|^2=
@@ -47,15 +55,17 @@ $$
 \end{cases}
 $$
 
-We also use the known clique obstruction for this graph, which is the obstruction behind Bondarenko's two-distance counterexample [[Bon2014](#Bon2014)]. The script verifies it again independently:
+We also use the clique obstruction underlying Bondarenko's construction [[Bon2014](#Bon2014)]:
 
 $$
 \omega(\Gamma)=5.
 $$
 
-For the Borsuk argument, the essential part is that \(\Gamma\) has no \(6\)-clique.
+The script `verify_borsuk63.py` reconstructs the graph and verifies this obstruction again.
 
-## New finite verification
+2. The finite partition.
+
+This part defines the partition, from an isotropic point \(q_0\), whose verified degree data will be used for the dimension drop.
 
 Fix an isotropic point \(q_0\) in the projective model of \(G_2(4)\) described by Brouwer [[BroG24](#BroG24)]. Let \(B\) be the set of vertices containing a non-isotropic point orthogonal to \(q_0\), and put
 
@@ -63,21 +73,19 @@ $$
 C=V(\Gamma)\setminus B.
 $$
 
-The following partition and degree data are the new finite checks in this note. The verification script checks:
+The exact verification gives
 
 $$
-|B|=96,\qquad |C|=320,
+|B|=96,\qquad |C|=320.
 $$
 
-and the induced subgraph on \(B\) has three connected components
+It also gives that the induced graph on \(B\) has three connected components
 
 $$
 B_1,B_2,B_3
 $$
 
-of size \(32\).
-
-The same exact computation gives the following degrees:
+of size \(32\), and verifies
 
 $$
 \begin{aligned}
@@ -89,30 +97,30 @@ $$
 \end{aligned}
 $$
 
-These are the additional finite facts used below.
+3. Dimension reduction.
 
-## The \(320\)-point set lies in dimension \(63\)
+This part shows that the \(320\) points indexed by \(C\) lie in a codimension-\(2\) subspace of the standard \(\mathbb R^{65}\) representation.
 
-For \(i=1,2,3\), define, inside the Euclidean representation quoted above [[Bon2014](#Bon2014), [BroG24](#BroG24)],
+For \(i=1,2,3\), set
 
 $$
 S_i=\sum_{y\in B_i}x_y.
 $$
 
-If \(c\in C\), then \(c\) has \(8\) neighbors and \(24\) non-neighbors in \(B_i\). Therefore
+If \(c\in C\), then \(c\) has \(8\) neighbors and \(24\) non-neighbors in \(B_i\). Hence
 
 $$
-\langle x_c,S_i\rangle
+x_c\cdot S_i
 =8\cdot18+24\cdot(-6)
 =0.
 $$
 
-So every \(x_c\), \(c\in C\), is orthogonal to \(S_1,S_2,S_3\).
+Thus every \(x_c\), \(c\in C\), is orthogonal to \(S_1,S_2,S_3\).
 
-The newly verified degrees also give
+The same degree data give
 
 $$
-\langle S_i,S_i\rangle
+S_i\cdot S_i
 =32(90+20\cdot18+11\cdot(-6))
 =12288,
 $$
@@ -120,36 +128,36 @@ $$
 and, for \(i\ne j\),
 
 $$
-\langle S_i,S_j\rangle
+S_i\cdot S_j
 =32^2(-6)
 =-6144.
 $$
 
-Hence the Gram matrix of \(S_1,S_2,S_3\) has diagonal entries \(12288\) and off-diagonal entries \(-6144\), so it has rank \(2\). Since the quoted \(G_2(4)\) representation has rank \(65\) [[Bon2014](#Bon2014), [BroG24](#BroG24)], the orthogonal complement
+The Gram matrix of \(S_1,S_2,S_3\) has diagonal entries \(12288\) and off-diagonal entries \(-6144\), hence has rank \(2\). Since the ambient representation has rank \(65\), the orthogonal complement
 
 $$
-\langle S_1,S_2,S_3\rangle^\perp
+\mathrm{span}(S_1,S_2,S_3)^\perp
 $$
 
-has dimension \(63\), and all \(x_c\), \(c\in C\), lie in it.
+has dimension \(63\), and all points \(x_c\), \(c\in C\), lie in this subspace.
 
-## Adding one more point
+4. The added point.
 
-Choose \(b\in B_1\). The following projected point is the new modification. Set
+This part constructs one further point in the same 63-dimensional subspace and records its products with the points indexed by \(C\).
+
+Choose \(b\in B_1\), and define
 
 $$
 z_b=x_b-\frac1{32}S_1.
 $$
 
-Using the same newly verified degree data,
+The verified degree data imply
 
 $$
-\langle z_b,S_i\rangle=0\qquad (i=1,2,3),
+z_b\cdot S_i=0\qquad (i=1,2,3),
 $$
 
-so \(z_b\) is also in the same \(63\)-dimensional subspace.
-
-Moreover,
+so \(z_b\) lies in the same 63-dimensional subspace. Moreover
 
 $$
 \|z_b\|^2
@@ -157,10 +165,10 @@ $$
 =78.
 $$
 
-For \(c\in C\), since \(\langle S_1,x_c\rangle=0\),
+For \(c\in C\), since \(S_1\cdot x_c=0\),
 
 $$
-\langle z_b,x_c\rangle=\langle x_b,x_c\rangle
+z_b\cdot x_c=x_b\cdot x_c
 =
 \begin{cases}
 18, & b\sim c,\\
@@ -168,7 +176,7 @@ $$
 \end{cases}
 $$
 
-Now define
+Let
 
 $$
 t=\frac{\sqrt{222}-1}{13},
@@ -176,29 +184,25 @@ t=\frac{\sqrt{222}-1}{13},
 p=tz_b.
 $$
 
-This value of \(t\) is chosen so that
+Then
 
 $$
 78t^2+12t=102.
 $$
 
-Finally set
+Set
 
 $$
 X=\{x_c:c\in C\}\cup\{p\}.
 $$
 
-Then
+Then \(X\subset\mathbb R^{63}\) and \(|X|=321\).
 
-$$
-X\subset\mathbb R^{63},
-\qquad
-|X|=321.
-$$
+5. Diameter and clique obstruction.
 
-## Diameter computation
+This part computes the diameter of the resulting \(321\)-point set and uses the clique obstruction to bound smaller-diameter subsets.
 
-For \(c,c'\in C\), the distance formula comes from the quoted two-distance representation [[Bon2014](#Bon2014), [BroG24](#BroG24)]:
+For \(c,c'\in C\), the quoted two-distance representation gives
 
 $$
 \|x_c-x_{c'}\|^2=
@@ -208,7 +212,7 @@ $$
 \end{cases}
 $$
 
-For the new point \(p\), using \(\|p\|^2=78t^2\), we get
+For the added point \(p\),
 
 $$
 \|p-x_c\|^2=
@@ -218,57 +222,45 @@ $$
 \end{cases}
 $$
 
-Thus
+Therefore
 
 $$
-\operatorname{diam}(X)^2=192.
+\mathrm{diam}(X)^2=192.
 $$
 
-## Smaller-diameter subsets
+Let \(Y\subset X\) have diameter strictly smaller than \(\mathrm{diam}(X)\). If \(p\notin Y\), then the corresponding vertices in \(C\) must be pairwise adjacent, hence form a clique in \(\Gamma\). Since \(\Gamma\) has no \(6\)-clique, \(|Y|\le5\).
 
-Let \(Y\subset X\) have diameter strictly smaller than \(\operatorname{diam}(X)\).
-
-If \(p\notin Y\), then the corresponding vertices in \(C\) must be pairwise adjacent, because non-adjacent pairs have squared distance \(192\) by the quoted representation [[Bon2014](#Bon2014), [BroG24](#BroG24)]. Hence they form a clique in \(\Gamma\). Since the no-\(K_6\) obstruction is verified by the script, \(|Y|\le 5\).
-
-If \(p\in Y\), then every other point must be some \(x_c\) with \(b\sim c\). These \(c\)'s must also be pairwise adjacent. Therefore
+If \(p\in Y\), then every other point of \(Y\) must be some \(x_c\) with \(b\sim c\), and these \(c\)'s must be pairwise adjacent. Hence
 
 $$
 \{b\}\cup\{c\in C:x_c\in Y\setminus\{p\}\}
 $$
 
-is a clique in \(\Gamma\). Using the same no-\(K_6\) obstruction, this clique has size at most \(5\), and therefore \(|Y|\le 5\).
+is a clique in \(\Gamma\). Again using the absence of a \(6\)-clique, this gives \(|Y|\le5\).
 
-So every smaller-diameter subset of \(X\) has at most \(5\) points.
-
-## Conclusion
-
-Any partition of \(X\) into subsets of strictly smaller diameter needs at least
+Thus every subset of \(X\) of strictly smaller diameter has at most \(5\) points. Any partition of \(X\) into subsets of strictly smaller diameter therefore needs at least
 
 $$
-\left\lceil \frac{321}{5}\right\rceil=65
+\left\lceil\frac{321}{5}\right\rceil=65
 $$
 
-parts. In dimension \(63\), Borsuk's conjecture would allow only
+parts. Since \(65>64=63+1\), this gives a counterexample to Borsuk's conjecture in \(\mathbb R^{63}\). Consequently,
 
 $$
-63+1=64
+C_{28}\le63.
 $$
 
-parts. Since \(65>64\), this improves the previous \(64\)-dimensional counterexample of Jenrich--Brouwer [[JB2014](#JB2014)] by one dimension. Hence
+6. Verification.
 
-$$
-C_{28}\le 63.
-$$
+This part gives the command reproducing the finite checks used above.
 
-## Verification script
-
-The verification script in this repository checks the finite facts used above:
+Run
 
 ```bash
 python verify_borsuk63.py
 ```
 
-Its verified output includes:
+The expected output is:
 
 ```text
 projective points 273
@@ -301,8 +293,10 @@ b 0 NbC size 80 has K5 on NbC False
 all exact verification checks passed
 ```
 
-## References
+References.
 
-- <a id="Bon2014"></a>**[Bon2014]** A. V. Bondarenko, *On Borsuk's conjecture for two-distance sets*, Discrete & Computational Geometry 51 (2014), 509--515. Preprint: https://arxiv.org/abs/1305.2584
-- <a id="JB2014"></a>**[JB2014]** T. Jenrich and A. E. Brouwer, *A 64-dimensional counterexample to Borsuk's conjecture*, Electronic Journal of Combinatorics 21(4), P4.29 (2014). PDF: https://www.combinatorics.org/ojs/index.php/eljc/article/view/v21i4p29/pdf
-- <a id="BroG24"></a>**[BroG24]** A. E. Brouwer, *The \(G_2(4)\) graph*, graph data and construction notes. https://aeb.win.tue.nl/graphs/G24.html
+<a id="Bon2014"></a>[Bon2014] A. V. Bondarenko, *On Borsuk's conjecture for two-distance sets*, Discrete & Computational Geometry 51 (2014), 509--515. Preprint: https://arxiv.org/abs/1305.2584
+
+<a id="JB2014"></a>[JB2014] T. Jenrich and A. E. Brouwer, *A 64-dimensional counterexample to Borsuk's conjecture*, Electronic Journal of Combinatorics 21(4), P4.29 (2014). PDF: https://www.combinatorics.org/ojs/index.php/eljc/article/view/v21i4p29/pdf
+
+<a id="BroG24"></a>[BroG24] A. E. Brouwer, *The \(G_2(4)\) graph*, graph data and construction notes. https://aeb.win.tue.nl/graphs/G24.html
