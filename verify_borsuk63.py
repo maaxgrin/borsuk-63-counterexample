@@ -11,7 +11,7 @@ clique obstructions that force every smaller-diameter part to have size at most
 """
 
 
-MOD_POLY = 0b10011  # x^4 + x + 1, without the x^4 term for reduction below.
+MOD_POLY = 0b10011  # x^4 + x + 1; xor clears the overflow x^4 bit.
 
 
 def gf_mul(a, b):

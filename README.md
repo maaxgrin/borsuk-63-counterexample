@@ -3,12 +3,12 @@ Borsuk_63_note
 This repository contains a proof note and an exact finite verification script for a 63-dimensional construction related to Borsuk's conjecture. It gives
 
 $$
-C_{28}\le 63,
+d_B\le 63,
 $$
 
-where \(C_{28}\) denotes the least dimension in which Borsuk's conjecture fails.
+where \(d_B\) denotes the least dimension in which Borsuk's conjecture fails.
 
-The construction starts from the \(G_2(4)\) strongly regular graph described by Brouwer [[BroG24](#BroG24)] and used in Bondarenko's 65-dimensional two-distance counterexample [[Bon2014](#Bon2014)]. The previous best bound \(C_{28}\le64\) is due to Jenrich and Brouwer [[JB2014](#JB2014)].
+The construction starts from the \(G_2(4)\) strongly regular graph described by Brouwer [[BroG24](#BroG24)] and used in Bondarenko's 65-dimensional two-distance counterexample [[Bon2014](#Bon2014)]. The previous best bound \(d_B\le64\) is due to Jenrich and Brouwer [[JB2014](#JB2014)].
 
 The principle of the proof is as follows. In the standard \(65\)-dimensional representation of \(G_2(4)\), an isotropic point \(q_0\) defines a partition \(B_1,B_2,B_3,C\) of the vertices. The \(320\) points indexed by \(C\) are orthogonal to a 2-dimensional space spanned by three block sums, hence lie in a 63-dimensional subspace. One then adds a single projected point \(p\) in the same subspace, chosen so that the diameter remains the original large distance. The absence of a \(6\)-clique in \(G_2(4)\) then implies that every smaller-diameter part has at most \(5\) points, so \(321\) points require at least \(65>64\) parts.
 
@@ -196,7 +196,7 @@ $$
 X=\{x_c:c\in C\}\cup\{p\}.
 $$
 
-Then \(X\subset\mathbb R^{63}\) and \(|X|=321\).
+Since \(\|p\|^2=78t^2\ne90=\|x_c\|^2\) for \(c\in C\), the point \(p\) is not one of the \(x_c\). Thus \(X\subset\mathbb R^{63}\) and \(|X|=321\).
 
 5. Diameter and clique obstruction.
 
@@ -247,7 +247,7 @@ $$
 parts. Since \(65>64=63+1\), this gives a counterexample to Borsuk's conjecture in \(\mathbb R^{63}\). Consequently,
 
 $$
-C_{28}\le63.
+d_B\le63.
 $$
 
 6. Verification.
