@@ -35,7 +35,9 @@ If Sage is available, the exported DIMACS certificates can be checked independen
 sage verify_borsuk63_sage.sage
 ```
 
-The Python checks are exact and deterministic, and are also run by the GitHub Actions workflow.
+The GitHub Actions workflow runs the pure-Python verification and checks that
+the exported certificates are reproducible. The Sage verifier is provided as
+an optional independent check.
 
 The construction and proof were obtained with assistance from GPT-5.5 Pro.
 
